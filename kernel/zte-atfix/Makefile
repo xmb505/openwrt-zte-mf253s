@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=zte-atfix
-PKG_VERSION:=1.0.0
+PKG_VERSION:=1.0.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/xmb505/zte-mf253s.git
-PKG_SOURCE_VERSION:=81a7e5fe796cbc88d9df2b1aad5b3c31818f832d
+PKG_SOURCE_VERSION:=ff3cc05c54f37fe27ef6b8de809fb64fc38dfbfb
 PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=GPL-2.0
