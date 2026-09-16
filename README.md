@@ -9,8 +9,11 @@ turns the operator-retired mSATA module into a native Linux mobile data card.
 
 | 包名 | 说明 | 依赖 |
 |---|---|---|
-| `kmod-zte-ecm` | ECM 数据口（if1）usbnet 驱动 | `kmod-usb-net` `kmod-usb-net-cdc-ether` |
+| `kmod-zte-ecm` | ECM 数据口（if1）usbnet 驱动 | `kmod-usb-net` `kmod-usb-net-cdc-ether` `kmod-zte-atfix` |
 | `kmod-zte-atfix` | AT 修复 + Icera 伪装 + 拨号翻译 + 链路管理 | `kmod-usb-serial` |
+
+两个包是同一模块的两半，**装 `kmod-zte-ecm` 会自动带上 `kmod-zte-atfix`**——
+数据口单独存在没有意义：初始化、拨号、保活都在 AT 半边。
 
 上层推荐搭配 stock `modemmanager`（NetworkManager 的移动数据界面、通知走
 ModemManager GUI 即可）。

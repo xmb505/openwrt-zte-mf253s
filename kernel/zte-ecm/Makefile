@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=zte-ecm
 PKG_VERSION:=1.0.1
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=zte-mf253s-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/xmb505/zte-mf253s/archive/refs/tags/
@@ -22,7 +22,7 @@ TAR_CMD=$(HOST_TAR) -C $(1) $(TAR_OPTIONS)
 define KernelPackage/zte-ecm
   SUBMENU:=USB Support
   TITLE:=ZTE ZX297510 (MF253S) ECM data interface driver
-  DEPENDS:=+kmod-usb-net +kmod-usb-net-cdc-ether
+  DEPENDS:=+kmod-usb-net +kmod-usb-net-cdc-ether +kmod-zte-atfix
   FILES:=$(PKG_BUILD_DIR)/drivers/zte_ecm/zte_ecm.ko
   AUTOLOAD:=$(call AutoProbe,zte_ecm)
 endef
