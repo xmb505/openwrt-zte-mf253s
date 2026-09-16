@@ -28,11 +28,22 @@ make menuconfig   # Kernel modules -> USB Support -> kmod-zte-ecm / kmod-zte-atf
 
 选上两个 kmod 和 `modemmanager` 后正常编译固件即可。
 
+## OpenWrt 集成注意
+
+装机组合：两个 kmod + 官方 feed 的 `modemmanager` + `luci-proto-modemmanager`
+（LuCI 自带「Cellular Network」状态页），接口 proto 选 `modemmanager`。
+
+实测（ImmortalWrt 24.10.6 / 内核 6.6.133）踩到 4 个**与驱动无关**的集成坑：
+MM 的 hotplug 事件缓存、netifd 的 proto 表刷新、开机竞争（proto 先于 MM 探测）、
+`/32` 承载的默认路由。细节与补丁全部记录在主仓 README 的
+「在 OpenWrt / ImmortalWrt 上集成（实测记录）」一节：
+<https://github.com/xmb505/zte-mf253s>
+
 ## 已验证平台
 
 | 平台 | 内核 | 状态 |
 |---|---|---|
-| ImmortalWrt 24.10 (x86_64) | 6.6 | 待验证 |
+| ImmortalWrt 24.10.6 (x86_64) | 6.6.133 | ✅ 实测通过：kmod 编译/安装、开机自启、MM 识别、拨号上网（中国移动，ping/HTTP 全通） |
 
 ## 许可
 
