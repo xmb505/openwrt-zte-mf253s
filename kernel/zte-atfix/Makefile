@@ -2,12 +2,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=zte-atfix
 PKG_VERSION:=1.0.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/xmb505/zte-mf253s.git
-PKG_SOURCE_VERSION:=ff3cc05c54f37fe27ef6b8de809fb64fc38dfbfb
-PKG_MIRROR_HASH:=skip
+PKG_SOURCE:=zte-mf253s-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://github.com/xmb505/zte-mf253s/archive/refs/tags/
+PKG_SOURCE_URL_FILE:=v$(PKG_VERSION).tar.gz
+PKG_HASH:=1b3cdd3b56dce8bf8099f25690cb69f9e163e8d3de492bf35891c44d9db98701
 
 PKG_LICENSE:=GPL-2.0
 PKG_MAINTAINER:=xmb505 <retromilia@foxmail.com>
@@ -15,6 +15,9 @@ PKG_BUILD_PARALLEL:=1
 
 include $(INCLUDE_DIR)/kernel.mk
 include $(INCLUDE_DIR)/package.mk
+
+TAR_OPTIONS+= --strip-components 1
+TAR_CMD=$(HOST_TAR) -C $(1) $(TAR_OPTIONS)
 
 define KernelPackage/zte-atfix
   SUBMENU:=USB Support
